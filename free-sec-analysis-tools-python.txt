@@ -1,0 +1,139 @@
+Author: JonKramme
+
+PYRE -> Pysa
+
+	Command Line: Ja
+	GUI: Ja (SAPP Web UI)
+	Reports: JSON
+
+	Vorteile
+		taint analysis
+		konfigurierbar in JSON
+		Eigene Sources, sinks, Sanitizer konfigurierbar.
+		
+	Nachteile
+		benötigt Python und watchman installiert.
+		
+	--------------------
+	
+	watchman überwacht dateiänderungen in dem virtual environment
+	
+	https://github.com/facebook/pyre-check
+	
+	--------------------
+
+Bandit
+A security linter from PyCQA
+
+	Bandit is a tool designed to find common security issues in Python code. To do this, Bandit processes each file, builds an AST from it, and runs appropriate plugins against the AST nodes. Once Bandit has finished scanning all the files, it generates a report.
+
+	Command Line: Ja
+	GUI: Nein
+	Reports: JSON
+
+	Vorteile
+		statische code analyse
+		Plugin basierend.
+		Regelwerk erweiterbar
+		arbeitet in AST
+
+	Nachteile
+		keine taint analyse
+		benötigt Python installiert
+		
+	--------------------
+
+	https://github.com/PyCQA/bandit
+	
+	--------------------
+	
+Dlint
+
+	Command Line: Ja
+	GUI: Nein
+	Reports: JSON
+
+	Vorteile
+		statische code analyse
+		Plugin basierend.
+		Regelwerk erweiterbar	
+
+	Nachteile
+		Regeln großteils Community erstellt.
+		keine taint analyse
+		benötigt Python installiert
+		
+	--------------------
+	
+	builds on flake8 (toolkit for checking your code base against coding style)
+	
+	https://github.com/dlint-py/dlint
+	
+	--------------------
+
+HuskyCI
+
+	Command Line: Ja
+	GUI: Nein
+	Reports: versch. formate (csv, custom, html, json, screen, text, xml, yaml)
+
+	Vorteile
+		Verwendet das freie Tool “Bandit” für python
+		integrierbar
+		erweiterbar
+		auch Tests für andere Sprachen verfügbar
+		
+	Nachteile
+		benötigt Docker installiert
+		benötigt Python installiert
+		Verwendet das Tool “Safety” (nicht frei für Kommerzielle Zwecke)
+		keine taint analyse
+		
+	--------------------
+	
+	"Safety is free and open source (MIT Licensed). The underlying open vulnerability database is updated once per month.
+	To get access to all vulnerabilites as soon as they are added, you need a Safety API key that comes with a paid pyup.io account, starting at $99."
+
+	https://github.com/globocom/huskyCI
+	
+	--------------------
+
+horusec
+
+	Command Line: Ja
+	GUI: Nein
+	Reports: JSON, docker image, sonarqube
+
+	Vorteile
+		Verwendet freies Tool “Bandit”
+	
+	Nachteile
+
+		benötigt Docker installiert zur besten funktionalität
+		verwendet nicht business-kostenlose Tools: 
+		“Safety, Semgrep”
+		keine taint analyse
+		benötigt Python installiert
+		
+	--------------------
+
+	Horus Python tools:
+		Bandit
+		Safety
+		Semgrep
+		Owasp Dependency Check
+
+	Horusec analysis' types
+	
+		SAST (Static Application Security Testing) 
+		The SAST does static code vulnerability analysis. They can be done in source code, byte code or binary.
+
+		Leaks 
+		The “Leaks checks the source code for possible leaks of credentials, private keys or hard coded passwords.
+
+		Dependency audit 
+		You analyze the project’s dependencies to check for vulnerabilities in third-party libraries. in third-party libraries.
+
+	https://github.com/ZupIT/horusec
+	
+	--------------------

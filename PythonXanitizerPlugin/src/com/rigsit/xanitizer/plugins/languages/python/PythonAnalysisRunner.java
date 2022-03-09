@@ -19,7 +19,8 @@ import com.rigsit.xanitizer.pub.util.ProcessUtil;
  * @author Jonathan Kramme
  *
  */
-public class PythonAnalysisRunner {
+
+public class PythonAnalysisRunner { //Runs the bandit software with options and all the (in Xanitizer) selected Tests
 	private final static Logger LOG = Logger.getLogger(PythonAnalysisRunner.class.getName());
 	private static String banditExe = "bandit-linux";
 
@@ -35,8 +36,8 @@ public class PythonAnalysisRunner {
 			cmdLine.add(context.getInstallDirectory() + "/xanitizer-plugins/tools/" + banditExe);
 			cmdLine.add("-r");
 
-			String tests = collectTestStrings(context, problemTypePrefix);
-
+			String tests = collectTestStrings(context, problemTypePrefix); // get a concatenated String of all the selected Tests
+			
 			if (!tests.isBlank()) {
 				cmdLine.add("-t");
 				cmdLine.add(tests);
@@ -45,9 +46,9 @@ public class PythonAnalysisRunner {
 				return -1;
 			}
 			cmdLine.add((baseDirOrNull == null ? "" : baseDirOrNull.toString()));
-			cmdLine.add("-o");
+			cmdLine.add("-o"); //output option
 			cmdLine.add(PYTaintWorkDir.getAbsolutePath()+ "/banditreport.json");
-			cmdLine.add("-f");
+			cmdLine.add("-f"); //format option
 			cmdLine.add("json");
 
 			// run Bandit.exe -r ~/your_repos/project
@@ -65,7 +66,8 @@ public class PythonAnalysisRunner {
 		}
 		return -1;
 	}
-
+	
+	// get a concatenated String of all the selected Tests
 	private static String collectTestStrings(ILanguageContext context, String problemTypePrefix) {
 
 		final StringBuilder sbtests = new StringBuilder("");

@@ -47,6 +47,9 @@ import com.rigsit.xanitizer.pub.util.regex.FileMatcher;
  * @author Jonathan Kramme
  *
  */
+
+
+// Central Class for the Python Language Plugin
 public class PythonLanguagePlugin extends AbstractPlugin implements ILanguagePlugin, IXanitizerPlugin {
 
 	private final static Logger LOG = Logger.getLogger(PythonLanguagePlugin.class.getName());
@@ -87,7 +90,8 @@ public class PythonLanguagePlugin extends AbstractPlugin implements ILanguagePlu
 		m_WorkspaceFilesInBatches = null;
 		m_SeenFindingKeys.clear();
 	}
-
+	
+	//clears/resets the temporary working directory
 	private void resetTmpWorkDir(final ILanguageContext languageContext) {
 		m_PYTaintWorkDir = new File(languageContext.getProjectDirectory(), "pytaintWork");
 		FileUtil.deleteRecursively(m_PYTaintWorkDir);
@@ -146,7 +150,8 @@ public class PythonLanguagePlugin extends AbstractPlugin implements ILanguagePlu
 		}
 		return Collections.emptyList();
 	}
-
+	
+	//Collects all the Python files in the project folder and registers them in Xanitizer
 	private void collectPythonFiles(final File baseDir, final Consumer<String> callback, final ILanguageContext context,
 			final ICancelListener dummyCancelListener) {
 		final var relativePathAntMatcherText_Python = context.getPluginDefinedXanitizerConfigurationValue(
